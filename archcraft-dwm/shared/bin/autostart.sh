@@ -42,6 +42,9 @@ exec mpd &
 
 ## Add your autostart programs here --------------
 
+# enable num lock
+numlockx &
+
 ## -----------------------------------------------
 
 # Launch DWM
