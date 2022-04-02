@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
+## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
+
+DIR="/usr/share/archcraft/dwm"
+
+rofi_command="rofi -theme $DIR/rofi/themes/layouts.rasi"
+
+# Layouts
+layout_1="[]=  tile"
+layout_2="M[]  monocle"
+layout_3="@[]  spiral"
+layout_4="/[]  dwindle"
+layout_5="H[]  deck"
+layout_6="TTT  bstack"
+layout_7="===  bstackhoriz"
+layout_8="HHH  grid"
+layout_9="###  nrowgrid"
+layout_10="---  horizgrid"
+layout_11=":::  gaplessgrid"
+layout_12="|M|  centeredmaster"
+layout_13=">M>  centeredfloatMaster"
+layout_14="|+|  tatami"
+layout_15="><>  floating"
+
+# Variable passed to rofi
+options="$layout_1\n$layout_2\n$layout_3\n$layout_4\n$layout_5\n$layout_6\n$layout_7\n$layout_8\n$layout_9\n$layout_10\n$layout_11\n$layout_12\n$layout_13\n$layout_14\n$layout_15"
+
+# Functions
+
+chosen="$(echo -e "$options" | $rofi_command -p "Switch Layout" -dmenu -selected-row 0)"
+case $chosen in
+    $layout_1)
+        dwmc setlayoutex 0
+        ;;
+    $layout_2)
+        dwmc setlayoutex 1
+        ;;
+    $layout_3)
+        dwmc setlayoutex 2
+        ;;
+    $layout_4)
+        dwmc setlayoutex 3
+        ;;
+    $layout_5)
+        dwmc setlayoutex 4
+        ;;
+    $layout_6)
+        dwmc setlayoutex 5
+        ;;
+    $layout_7)
+        dwmc setlayoutex 6
+        ;;
+    $layout_8)
+        dwmc setlayoutex 7
+        ;;
+    $layout_9)
+        dwmc setlayoutex 8
+        ;;
+    $layout_10)
+        dwmc setlayoutex 9
+        ;;
+    $layout_11)
+        dwmc setlayoutex 10
+        ;;
+    $layout_12)
+        dwmc setlayoutex 11
+        ;;
+    $layout_13)
+        dwmc setlayoutex 12
+        ;;
+    $layout_14)
+        dwmc setlayoutex 13
+        ;;
+    $layout_15)
+        dwmc setlayoutex 14
+        ;;
+esac
+
+

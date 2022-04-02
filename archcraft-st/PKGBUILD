@@ -1,0 +1,56 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname=archcraft-st
+pkgver=0.8.4
+pkgrel=2
+pkgdesc='A simple virtual terminal emulator for X.'
+arch=('i686' 'x86_64' 'armv7h')
+license=('MIT')
+depends=(libxft)
+conflicts=('st')
+url=https://st.suckless.org
+
+source=(https://dl.suckless.org/st/st-$pkgver.tar.gz
+		anysize.patch
+		st-boxdraw.patch
+		st-mouse-scroll_1.patch
+		st-mouse-scroll_2.patch
+		st-mouse-scroll_3.patch)
+
+sha256sums=('d42d3ceceb4d6a65e32e90a5336e3d446db612c3fbd9ebc1780bc6c9a03346a6'
+            '3851f7919e788cc6667ffdb28ca743188e2869a15f3fc34a8c0b39108d946ef0'
+            'a24118148631f6670ea568a3debdd00a7cbcfa525839281888e876e7ea409658'
+            '19df3e359e422703f564cff7190ab9a5537ea3e01b44d1404ee87b51ecc98793'
+            '319458d980195d18fa0f81a6898d58f8d046c5ff982ab872d741f54bb60e267d'
+            'cb87eb654985da46ff63663407184402393ad3d3013c8795570552fe56a15b9d')
+
+_sourcedir=st-$pkgver
+_makeopts="--directory=$_sourcedir"
+
+prepare() {
+	if [[ -e "$BUILDDIR/config.h" ]]; then
+		cp "$BUILDDIR/config.h" "$_sourcedir"
+	fi
+
+	cd "$srcdir/st-$pkgver"
+	patch --forward --strip=1 --input="${srcdir}/anysize.patch"
+	patch --forward --strip=1 --input="${srcdir}/st-boxdraw.patch"
+	patch --forward --strip=1 --input="${srcdir}/st-mouse-scroll_1.patch"
+	patch --forward --strip=1 --input="${srcdir}/st-mouse-scroll_2.patch"
+	patch --forward --strip=1 --input="${srcdir}/st-mouse-scroll_3.patch"
+}
+
+build() {
+  make $_makeopts X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+}
+
+package() {
+  local installopts='--mode 0644 -D --target-directory'
+  local shrdir="$pkgdir/usr/share"
+  local licdir="$shrdir/licenses/st"
+  local docdir="$shrdir/doc/st"
+  make $_makeopts PREFIX=/usr DESTDIR="$pkgdir" install
+  install $installopts "$licdir" "$_sourcedir/LICENSE"
+  install $installopts "$docdir" "$_sourcedir/README"
+  install $installopts "$shrdir/st" "$_sourcedir/st.info"
+}

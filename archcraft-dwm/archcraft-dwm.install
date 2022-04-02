@@ -1,0 +1,7 @@
+post_install() {
+	echo '*************************'
+	echo -e "\n[*] DWM is installed/updated. Make sure your system locale is in UTF-8 format, Otherwise you won't be able to login into DWM."
+	echo -e "\n[*] To display the currently set locale, run 'locale'."
+	echo -e "\n[*] To set new system locale (ex: en_US.UTF-8), run 'localectl set-locale LANG=en_US.UTF-8' as root and reboot the computer.\n"	
+	echo '*************************'
+}
