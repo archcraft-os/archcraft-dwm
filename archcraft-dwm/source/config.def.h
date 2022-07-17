@@ -144,10 +144,10 @@ static const char *dmenucmd[]  			= { "dmenu", NULL };
 /* Launch Apps */
 static const char *stcmd[]  			= { "st", NULL };
 static const char *termcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmterm.sh", NULL };
-static const char *floatterm[]  		= { "/usr/share/archcraft/dwm/bin/dwmterm.sh", "-f", NULL };
-static const char *fmcmd[]    			= { "/usr/share/archcraft/dwm/bin/dwmapps.sh", "-f", NULL };
-static const char *editcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmapps.sh", "-e", NULL };
-static const char *webcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmapps.sh", "-w", NULL };
+static const char *floatterm[]  		= { "/usr/share/archcraft/dwm/bin/dwmterm.sh", "--float", NULL };
+static const char *fmcmd[]    			= { "/usr/share/archcraft/dwm/bin/dwmapps.sh", "--file", NULL };
+static const char *editcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmapps.sh", "--editor", NULL };
+static const char *webcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmapps.sh", "--web", NULL };
 
 /* Rofi Menus */
 static const char *rofi_cmd[] 			= { "/usr/share/archcraft/dwm/rofi/bin/launcher", NULL };

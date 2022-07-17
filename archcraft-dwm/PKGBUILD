@@ -2,7 +2,7 @@
 
 pkgname=archcraft-dwm
 pkgver=1.0
-pkgrel=5
+pkgrel=6
 pkgdesc="DWM for Archcraft"
 url="https://github.com/archcraft-os/archcraft-dwm"
 arch=('any')
@@ -10,15 +10,12 @@ license=('GPL3')
 options=(zipman)
 depends=('libx11' 'libxinerama' 'libxft' 'freetype2' 
 		'archcraft-st' 'hsetroot'
-		'archcraft-skeleton'
 		'alacritty' 'thunar' 'geany'
 		'rofi' 'polybar' 'dunst'
 		'mpd' 'mpc'
 		'maim' 'xclip' 'viewnior' 'feh'
 		'ksuperkey' 
 		'betterlockscreen'
-		'picom-ibhagwan-git' 
-		'xfce-polkit' 
 		'xfce4-power-manager' 
 		'xorg-xsetroot'
 )
@@ -29,6 +26,7 @@ install="${pkgname}.install"
 
 prepare() {
 	cp -af ../source/. ${srcdir}
+	cp -af ../source ${srcdir}
 	cp -af ../shared ${srcdir}
 }
 
@@ -49,4 +47,10 @@ package() {
   cp -r ${srcdir}/shared 		"$_dwmdir"/dwm
   chmod +x "$_dwmdir"/dwm/bin/*
   chmod +x "$_dwmdir"/dwm/rofi/bin/*
+
+  ## Copy Source files in /opt
+  local _dwmsrc=${pkgdir}/opt/dwm-source
+  mkdir -p "$_dwmsrc"
+
+  cp -r ${srcdir}/source/* 		"$_dwmsrc"  
 }
