@@ -45,4 +45,4 @@ exec mpd &
 ## -----------------------------------------------
 
 # Launch DWM
-dwm
+while dwm; [ $? -ne 0  ]; do echo "start dwm"; done
