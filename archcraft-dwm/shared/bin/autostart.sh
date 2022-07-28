@@ -42,6 +42,7 @@ exec mpd &
 
 # Fix Java problems
 wmname "LG3D"
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 ## Add your autostart programs here --------------
 
