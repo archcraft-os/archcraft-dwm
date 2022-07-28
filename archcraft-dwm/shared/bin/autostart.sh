@@ -40,6 +40,10 @@ hsetroot -cover /usr/share/archcraft/dwm/wallpapers/default.png
 # Start mpd
 exec mpd &
 
+# Fix Java problems
+wmname "LG3D"
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 ## Add your autostart programs here --------------
 
 ## -----------------------------------------------
