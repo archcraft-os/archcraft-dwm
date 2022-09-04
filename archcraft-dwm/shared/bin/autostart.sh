@@ -49,4 +49,4 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 ## -----------------------------------------------
 
 # Launch DWM
-dwm
+while dwm; [ $? -ne 0  ]; do echo "start dwm"; done
