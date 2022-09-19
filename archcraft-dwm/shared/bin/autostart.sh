@@ -44,9 +44,12 @@ exec mpd &
 wmname "LG3D"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-## Add your autostart programs here --------------
+## Add your autostart programs here to ~/.dwm_autostart
+## Changes to this file will be overwritten on updates!
 
-## -----------------------------------------------
+if [ -f ~/.dwm_autostart ]; then
+    . ~/.dwm_autostart
+fi
 
 # Launch DWM
 while dwm; [ $? -ne 0  ]; do echo "start dwm"; done
