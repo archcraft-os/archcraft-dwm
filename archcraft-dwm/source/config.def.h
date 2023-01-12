@@ -1,5 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-/* Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
+/* Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
  * 
  * DWM Configuration for Archcraft
  * Patched By : siduck76 <https://github.com/siduck76>
@@ -160,24 +160,25 @@ static const char *rofi_shotcmd[]  		= { "/usr/share/archcraft/dwm/rofi/bin/scre
 static const char *rofi_wincmd[]  		= { "/usr/share/archcraft/dwm/rofi/bin/windows", NULL };
 
 /* Misc */
-static const char *cpickcmd[]  			= { "color-gpick", NULL };
+static const char *cpickcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmcolorpicker.sh", NULL };
 static const char *lockcmd[]  			= { "betterlockscreen", "--lock", NULL };
 static const char *layoutswitcher[]  	= { "/usr/share/archcraft/dwm/bin/layoutmenu.sh", NULL };
 
 /* Hardware keys for volume and brightness */
 #include <X11/XF86keysym.h>
-static const char *mutevol[] 			= { "volume", "--toggle",  NULL };
-static const char *upvol[]   			= { "volume", "--inc",  	NULL };
-static const char *downvol[] 			= { "volume", "--dec",    	NULL };
-static const char *upbl[] 				= { "brightness", "--inc",    NULL };
-static const char *downbl[] 			= { "brightness", "--dec",  NULL };
+static const char *mutevol[] 			= { "/usr/share/archcraft/dwm/bin/dwmvolume.sh", "--toggle",  NULL };
+static const char *mutemic[] 			= { "/usr/share/archcraft/dwm/bin/dwmvolume.sh", "--toggle-mic",  NULL };
+static const char *upvol[]   			= { "/usr/share/archcraft/dwm/bin/dwmvolume.sh", "--inc",  	NULL };
+static const char *downvol[] 			= { "/usr/share/archcraft/dwm/bin/dwmvolume.sh", "--dec",    	NULL };
+static const char *upbl[] 				= { "/usr/share/archcraft/dwm/bin/dwmbrightness.sh", "--inc",    NULL };
+static const char *downbl[] 			= { "/usr/share/archcraft/dwm/bin/dwmbrightness.sh", "--dec",  NULL };
 
 /* Screenshot */
-static const char *shotnow[]  			= { "takeshot", "--now", NULL };
-static const char *shotin5[]  			= { "takeshot", "--in5", NULL };
-static const char *shotin10[]  			= { "takeshot", "--in10", NULL };
-static const char *shotwin[]  			= { "takeshot", "--win", NULL };
-static const char *shotarea[]  			= { "takeshot", "--area", NULL };
+static const char *shotnow[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--now", NULL };
+static const char *shotin5[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--in5", NULL };
+static const char *shotin10[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--in10", NULL };
+static const char *shotwin[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--win", NULL };
+static const char *shotarea[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--area", NULL };
 
 /* ******************** Keybindings ******************** */
 static Key keys[] = {
@@ -185,6 +186,7 @@ static Key keys[] = {
 
 	// Hardware Keys -----------
 	{ 0, 						XF86XK_AudioMute, 			spawn, {.v = mutevol } },
+	{ 0, 						XF86XK_AudioMicMute, 		spawn, {.v = mutemic } },
 	{ 0, 						XF86XK_AudioLowerVolume, 	spawn, {.v = downvol } },
 	{ 0, 						XF86XK_AudioRaiseVolume, 	spawn, {.v = upvol   } },
 	{ 0, 						XF86XK_MonBrightnessUp, 	spawn, {.v = upbl   } },
@@ -195,7 +197,7 @@ static Key keys[] = {
 	{ ALTKEY, 					XK_Print, 					spawn, {.v = shotin5 } },
 	{ ShiftMask, 				XK_Print, 					spawn, {.v = shotin10 } },
 	{ ControlMask, 				XK_Print, 					spawn, {.v = shotwin } },
-	{ ALTKEY|ControlMask, 		XK_Print, 					spawn, {.v = shotarea } },
+	{ MODKEY, 					XK_Print, 					spawn, {.v = shotarea } },
 
 	// Terminals -----------
     { MODKEY, 					XK_Return, 					spawn, {.v = stcmd } },

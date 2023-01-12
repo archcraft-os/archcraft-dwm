@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
-## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
 
 ## Script Termination
 exit_on_signal_SIGINT () {
@@ -20,13 +19,13 @@ trap exit_on_signal_SIGTERM SIGTERM
 # Build packages
 build_pkg () {
 	echo -e "\nBuilding Package ${1} - \n"
-	cd ${1} && makepkg -s && rm -rf src pkg
+	cd ${1} && makepkg -sc
 
 	if [[ "$1" == "archcraft-st" ]]; then
 		rm *.tar.gz
 	fi
 	
-	RDIR='../../packages/x86_64'
+	RDIR='../../../pkgs/x86_64'
 	if [[ -d "$RDIR" ]]; then
 		mv -f *.pkg.tar.zst "$RDIR"
 		echo -e "\nPackage moved to Repository.\n[!] Don't forget to update the database.\n"

@@ -1,8 +1,8 @@
 # Maintainer: Aditya Shakya <adi1090x@gmail.com>
 
 pkgname=archcraft-dwm
-pkgver=1.0
-pkgrel=8
+pkgver=2.0
+pkgrel=0
 pkgdesc="DWM for Archcraft"
 url="https://github.com/archcraft-os/archcraft-dwm"
 arch=('any')
@@ -18,6 +18,8 @@ depends=('libx11' 'libxinerama' 'libxft' 'freetype2'
 		'betterlockscreen'
 		'xfce4-power-manager' 
 		'xorg-xsetroot'
+		'wmname'
+		'pulsemixer' 'light' 'xcolor'
 )
 conflicts=('dwm')
 provides=("${pkgname}")
