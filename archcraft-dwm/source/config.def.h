@@ -14,7 +14,7 @@ static const unsigned int gappih    		= 5;	/* horiz inner gap between windows */
 static const unsigned int gappiv    		= 5;	/* vert inner gap between windows */
 static const unsigned int gappoh    		= 5;	/* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    		= 5;	/* vert outer gap between windows and screen edge */
-static 				  int smartgaps         = 0;	/* 1 means no outer gap when there is only one window */
+static 				        int smartgaps     = 0;	/* 1 means no outer gap when there is only one window */
 static const unsigned int systraypinning 	= 0;	/* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing 	= 10;	/* systray spacing */
 static const int systraypinningfailfirst 	= 1;	/* 1: if pinning fails,display systray on the 1st monitor,False: display systray on last monitor*/
@@ -23,14 +23,14 @@ static const int showbar            		= 1;	/* 0 means no bar */
 enum showtab_modes { showtab_never, showtab_auto, showtab_nmodes, showtab_always };
 static const int showtab            		= showtab_auto;
 static const int toptab             		= True;
-static const int topbar             		= 1;	/* 0 means bottom bar */
+static const int topbar             		= 0;	/* 0 means bottom bar */
 static const int horizpadbar        		= 15;
 static const int vertpadbar         		= 15;
 static const int vertpadtab         		= 34;
 static const int horizpadtabi       		= 10;
 static const int horizpadtabo       		= 10;
 static const int scalepreview       		= 4;
-static       int tag_preview      			= 1;	/* 1 means enable, 0 is off */
+static       int tag_preview      			= 0;	/* 1 means enable, 0 is off */
 
 /* ******************** Fonts ******************** */
 static const char *fonts[]          		= { "JetBrainsMono Nerd Font:size=10" };
@@ -46,8 +46,8 @@ static const char *colors[][3]  = {
     [TabSel]           = { blue,   gray2,  black  },
     [TabNorm]          = { gray3,  black,  black },
     [SchemeTag]        = { gray3,  black,  black },
-    [SchemeTag1]       = { blue,   black,  black },
-    [SchemeTag2]       = { red,    black,  black },
+    [SchemeTag1]       = { red,    black,  black },
+    [SchemeTag2]       = { blue,   black,  black },
     [SchemeTag3]       = { green,  black,  black },
     [SchemeTag4]       = { orange, black,  black },
     [SchemeTag5]       = { purple, black,  black },
@@ -61,7 +61,7 @@ static const char *colors[][3]  = {
 };
 
 /* ******************** Tags/Workspaces ******************** */
-static char *tags[] = {"", "", "", "", "", "", "", ""};
+static char *tags[] = {"", "", "", "", "", "", "", "", "9"};
 
 static const int tagschemes[] = { SchemeTag1, SchemeTag2, SchemeTag3,
                                   SchemeTag4, SchemeTag5, SchemeTag6,
@@ -185,42 +185,39 @@ static Key keys[] = {
     /* modifier 				key 						function 		argument */
 
 	// Hardware Keys -----------
-	{ 0, 						XF86XK_AudioMute, 			spawn, {.v = mutevol } },
-	{ 0, 						XF86XK_AudioMicMute, 		spawn, {.v = mutemic } },
-	{ 0, 						XF86XK_AudioLowerVolume, 	spawn, {.v = downvol } },
-	{ 0, 						XF86XK_AudioRaiseVolume, 	spawn, {.v = upvol   } },
-	{ 0, 						XF86XK_MonBrightnessUp, 	spawn, {.v = upbl   } },
-	{ 0, 						XF86XK_MonBrightnessDown, 	spawn, {.v = downbl   } },
+	{ 0, 						XF86XK_AudioMute, 			                spawn, {.v = mutevol } },
+	{ 0, 						XF86XK_AudioMicMute, 		                spawn, {.v = mutemic } },
+	{ 0, 						XF86XK_AudioLowerVolume, 	              spawn, {.v = downvol } },
+	{ 0, 						XF86XK_AudioRaiseVolume, 	              spawn, {.v = upvol   } },
+	{ 0, 						XF86XK_MonBrightnessUp, 	              spawn, {.v = upbl   } },
+	{ 0, 						XF86XK_MonBrightnessDown, 	            spawn, {.v = downbl   } },
 
 	// Print Keys -----------
-	{ 0, 						XK_Print, 					spawn, {.v = shotnow } },
-	{ ALTKEY, 					XK_Print, 					spawn, {.v = shotin5 } },
-	{ ShiftMask, 				XK_Print, 					spawn, {.v = shotin10 } },
-	{ ControlMask, 				XK_Print, 					spawn, {.v = shotwin } },
-	{ MODKEY, 					XK_Print, 					spawn, {.v = shotarea } },
+	{ 0, 						                    XK_Print, 					spawn, {.v = shotnow } },
+	{ ALTKEY, 					                XK_Print, 					spawn, {.v = shotin5 } },
+	{ ShiftMask, 				                XK_Print, 					spawn, {.v = shotin10 } },
+	{ ControlMask, 				              XK_Print, 					spawn, {.v = shotwin } },
+	{ MODKEY, 					                XK_Print, 					spawn, {.v = shotarea } },
 
 	// Terminals -----------
-    { MODKEY, 					XK_Return, 					spawn, {.v = stcmd } },
-    { MODKEY|ShiftMask, 		XK_Return, 					spawn, {.v = floatterm } },
-    { MODKEY|ControlMask, 		XK_Return, 					spawn, {.v = termcmd } },
+    { MODKEY, 					              XK_Return, 					spawn, {.v = stcmd } },
+    { MODKEY|ShiftMask, 		          XK_Return, 					spawn, {.v = floatterm } },
+    { MODKEY|ControlMask, 		        XK_Return, 					spawn, {.v = termcmd } },
 
 	// Launch Apps -----------
-    { MODKEY|ShiftMask, 		XK_f, 						spawn, {.v = fmcmd } },
-    { MODKEY|ShiftMask, 		XK_e, 						spawn, {.v = editcmd } },
-    { MODKEY|ShiftMask, 		XK_w, 						spawn, {.v = webcmd } },
+    { MODKEY|ShiftMask, 		          XK_f, 						  spawn, {.v = fmcmd } },
+    { MODKEY|ShiftMask, 		          XK_e, 						  spawn, {.v = editcmd } },
+    { MODKEY|ShiftMask, 		          XK_w, 						  spawn, {.v = webcmd } },
 	
 	// Rofi Menus -----------
-    { ALTKEY, 					XK_F1, 						spawn, {.v = rofi_cmd } },
-    { MODKEY, 					XK_m, 						spawn, {.v = rofi_mpdcmd } },
-    { MODKEY, 					XK_n, 						spawn, {.v = rofi_nmcmd } },
-    { MODKEY, 					XK_r, 						spawn, {.v = rofi_rootcmd } },
-    { MODKEY, 					XK_x, 						spawn, {.v = rofi_powercmd } },
-    { MODKEY, 					XK_s, 						spawn, {.v = rofi_shotcmd } },
-    { MODKEY, 					XK_w, 						spawn, {.v = rofi_wincmd } },
+    { MODKEY, 					              XK_d, 						  spawn, {.v = rofi_cmd } },
+    { MODKEY, 					              XK_m, 						  spawn, {.v = rofi_nmcmd } },
+    { MODKEY, 					              XK_r, 						  spawn, {.v = rofi_rootcmd } },
+    { MODKEY, 					              XK_Backspace,			  spawn, {.v = rofi_powercmd } },
 
 	// Misc -----------
-    { MODKEY, 					XK_p, 						spawn, {.v = cpickcmd } },
-    { ALTKEY|ControlMask, 		XK_l, 						spawn, {.v = lockcmd } },
+    { MODKEY, 					              XK_p, 						  spawn, {.v = cpickcmd } },
+    { ALTKEY|ControlMask, 		        XK_l, 						  spawn, {.v = lockcmd } },
 
 	// Tags -----------
     TAGKEYS( 					XK_1, 						0)
@@ -234,81 +231,58 @@ static Key keys[] = {
     TAGKEYS( 					XK_9, 						8)
 
 	// DWM Session	-----------
-    { MODKEY|ControlMask, 		XK_q, 						quit, {0} }, // Quit DWM
-    { MODKEY|ShiftMask, 		XK_r, 						quit, {1} }, // Restart DWM
-
-	// Border and Gaps -----------
-	/* Borders */
-    { MODKEY|ShiftMask, 		XK_equal, 					setborderpx, {.i = +1 } }, // Increase border width
-    { MODKEY|ShiftMask, 		XK_minus, 					setborderpx, {.i = -1 } }, // Decrease border width
-    { MODKEY|ShiftMask, 		XK_BackSpace, 				setborderpx, {.i = default_border } },
+    { MODKEY|ControlMask, 		        XK_q, 						        quit, {0} }, // Quit DWM
+    { MODKEY|ShiftMask, 		          XK_r, 						        quit, {1} }, // Restart DWM
 
 	/* Gaps */
     // overall gaps
-    { MODKEY|ShiftMask, 		XK_bracketleft,      		incrgaps, {.i = +1 } },
-    { MODKEY|ShiftMask, 		XK_bracketright,      		incrgaps, {.i = -1 } },
-    { MODKEY|ShiftMask, 		XK_backslash, 				defaultgaps, {0} }, // Default gaps
-    { MODKEY|ShiftMask, 		XK_g, 						togglegaps, {0} }, // Toggle gaps
+    { MODKEY|ShiftMask, 		          XK_bracketleft,  	        incrgaps, {.i = +1 } },
+    { MODKEY|ShiftMask, 		          XK_bracketright,          incrgaps, {.i = -1 } },
+    { MODKEY|ShiftMask, 		          XK_backslash,	            defaultgaps, {0} }, // Default gaps
+    { MODKEY|ShiftMask, 		          XK_g,			                togglegaps, {0} }, // Toggle gaps
 
-    // inner gaps
-    { MODKEY|ShiftMask, 				XK_i, 				incrigaps, {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask, 	XK_i, 				incrigaps, {.i = -1 } },
-
-    // outer gaps
-    { MODKEY|ControlMask, 				XK_o, 				incrogaps, {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask, 	XK_o, 				incrogaps, {.i = -1 } },
-	
 	// Window Management -----------
 	/* Murder */
-    { MODKEY, 					XK_c, 						killclient, {0} }, // Kill window
-    { MODKEY, 					XK_Escape, 					spawn, SHCMD("xkill") }, // xkill
+    { MODKEY, 					              XK_q, 						        killclient, {0} }, // Kill window
+    { MODKEY, 					              XK_Escape, 					      spawn, SHCMD("xkill") }, // xkill
 
 	/* Switch */
-    { MODKEY, 					XK_j, 						focusstack, {.i = +1 } }, // Cycle window
-    { MODKEY, 					XK_k, 						focusstack, {.i = -1 } },
-    { MODKEY|ShiftMask, 		XK_j, 						movestack, {.i = +1 } }, // Switch master
-    { MODKEY|ShiftMask, 		XK_k, 						movestack, {.i = -1 } },
-
-    { MODKEY, 					XK_Left, 					focusstack, {.i = +1 } }, // Cycle window
-    { MODKEY, 					XK_Right, 					focusstack, {.i = -1 } },
-    { MODKEY|ShiftMask, 		XK_Left, 					movestack, {.i = +1 } }, // Switch master
-    { MODKEY|ShiftMask, 		XK_Right, 					movestack, {.i = -1 } },
-
-    { MODKEY, 					XK_i, 						incnmaster, {.i = +1 } }, // Verticle
-    { MODKEY, 					XK_u, 						incnmaster, {.i = -1 } }, // Horizontal
+    { MODKEY, 					              XK_j, 						        focusstack, {.i = +1 } }, // Cycle window
+    { MODKEY, 					              XK_k, 						        focusstack, {.i = -1 } },
+    { MODKEY|ShiftMask, 		          XK_j, 						        movestack, {.i = +1 } }, // Switch master
+    { MODKEY|ShiftMask, 		          XK_k, 						        movestack, {.i = -1 } },
 
 	/* Resize */
-    { MODKEY, 					XK_h, 						setmfact, {.f = -0.05} }, // Shrink left 
-    { MODKEY, 					XK_l, 						setmfact, {.f = +0.05} }, // Shrink right
+    { MODKEY, 					              XK_h, 						        setmfact, {.f = -0.05} }, // Shrink left 
+    { MODKEY, 					              XK_l, 						        setmfact, {.f = +0.05} }, // Shrink right
 
-    { MODKEY|ControlMask, 		XK_Left, 					setmfact, {.f = -0.05} }, // Shrink left 
-    { MODKEY|ControlMask, 		XK_Right, 					setmfact, {.f = +0.05} }, // Shrink right
+    { MODKEY|ControlMask, 		        XK_Left, 					        setmfact, {.f = -0.05} }, // Shrink left 
+    { MODKEY|ControlMask, 		        XK_Right, 					      setmfact, {.f = +0.05} }, // Shrink right
 
 	/* Misc */
-    { MODKEY, 					XK_b, 						togglebar, {0} }, // Toggle bar
-    { MODKEY, 					XK_Tab, 					zoom, {0} }, // Switch to master
-    { ALTKEY, 					XK_Tab, 					view, {0} }, // Switch to last tag
-    { MODKEY, 					XK_d, 						hidewin, {0} }, // Hide window
-    { MODKEY|ShiftMask, 		XK_d, 						restorewin, {0} }, // Restore window
-    { MODKEY, 					XK_0, 						view, {.ui = ~0 } },
-    { MODKEY|ShiftMask, 		XK_0, 						tag, {.ui = ~0 } },
+    { MODKEY, 					              XK_Tab, 					        zoom, {0} }, // Switch to master
+    { ALTKEY, 					              XK_Tab, 					        view, {0} }, // Switch to last tag
+    { MODKEY, 					              XK_z, 						        hidewin, {0} }, // Hide window
+    { MODKEY|ShiftMask, 		          XK_z, 						        restorewin, {0} }, // Restore window
+    { MODKEY, 					              XK_0, 						        view, {.ui = ~0 } },
+    { MODKEY|ShiftMask, 		          XK_0, 						        tag, {.ui = ~0 } },
 
 	// Layouts -----------
-    { ALTKEY|ControlMask, 		XK_space, 					spawn, {.v = rofi_layoutcmd } },
+    { ALTKEY|ControlMask, 		        XK_space, 					      spawn, {.v = rofi_layoutcmd } },
 
-    { MODKEY|ControlMask, 		XK_comma, 					cyclelayout, {.i = -1 } },
-    { MODKEY|ControlMask, 		XK_period, 					cyclelayout, {.i = +1 } },
-    { MODKEY|ShiftMask, 		XK_space, 					togglefloating, {0} },
-    { MODKEY, 					XK_f, 						togglefullscr, {0} },
+    { MODKEY|ControlMask, 		        XK_comma, 					      cyclelayout, {.i = -1 } },
+    { MODKEY|ControlMask, 		        XK_period, 					      cyclelayout, {.i = +1 } },
+    { MODKEY|ShiftMask, 		          XK_space, 					      togglefloating, {0} },
+    { MODKEY, 					              XK_f, 					  	      togglefullscr, {0} },
 
-    { MODKEY, 					XK_space, 					setlayout, {0} }, 
-	{ MODKEY, 					XK_t, 						setlayout, {.v = &layouts[0]} }, // Tile
-    { MODKEY, 					XK_g, 						setlayout, {.v = &layouts[10]} }, // Grid
-    { MODKEY|ShiftMask, 		XK_m, 						setlayout, {.v = &layouts[1]} }, // Monocle
-    { MODKEY|ShiftMask, 		XK_s, 						setlayout, {.v = &layouts[2]} }, // Spiral
-    { MODKEY|ShiftMask, 		XK_t, 						setlayout, {.v = &layouts[5]} }, // Stack
-    { MODKEY|ShiftMask, 		XK_c, 						setlayout, {.v = &layouts[11]} }, // Centered master
-    { MODKEY|ShiftMask, 		XK_x, 						setlayout, {.v = &layouts[13]} }, // Tatami
+    { MODKEY, 					              XK_space, 			          setlayout, {0} }, 
+	  { MODKEY, 					              XK_t, 						        setlayout, {.v = &layouts[0]} }, // Tile
+    { MODKEY, 					              XK_g, 						        setlayout, {.v = &layouts[10]} }, // Grid
+    { MODKEY|ShiftMask, 		          XK_m, 						        setlayout, {.v = &layouts[1]} }, // Monocle
+    { MODKEY|ShiftMask, 		          XK_s, 						        setlayout, {.v = &layouts[2]} }, // Spiral
+    { MODKEY|ShiftMask, 		          XK_t, 						        setlayout, {.v = &layouts[5]} }, // Stack
+    { MODKEY|ShiftMask, 		          XK_c, 						        setlayout, {.v = &layouts[11]} }, // Centered master
+    { MODKEY|ShiftMask, 		          XK_x, 						        setlayout, {.v = &layouts[13]} }, // Tatami
     
 };
 

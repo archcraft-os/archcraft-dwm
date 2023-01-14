@@ -26,7 +26,7 @@ wlan() {
 ## Time
 clock() {
 	printf "^c#1e222a^^b#668ee3^  "
-	printf "^c#1e222a^^b#7aa2f7^ $(date '+%a, %I:%M %p') "
+	printf "^c#1e222a^^b#7aa2f7^ $(date '+%a, %H:%M') "
 }
 
 ## System Update
@@ -84,5 +84,5 @@ while true; do
   [ "$interval" == 0 ] || [ $(("$interval" % 3600)) == 0 ] && updates=$(updates)
   interval=$((interval + 1))
 
-  sleep 1 && xsetroot -name "$(battery) $(brightness) $(cpu_info) $(memory) $(wlan) $(clock)"
+  sleep 1 && xsetroot -name "$(cpu_info) $(memory) $(clock)"
 done
