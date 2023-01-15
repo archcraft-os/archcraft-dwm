@@ -48,12 +48,13 @@ static const char *colors[][3]  = {
     [SchemeTag]        = { gray3,  black,  black },
     [SchemeTag1]       = { red,    black,  black },
     [SchemeTag2]       = { blue,   black,  black },
-    [SchemeTag3]       = { green,  black,  black },
+    [SchemeTag3]       = { yellow,  black,  black },
     [SchemeTag4]       = { orange, black,  black },
     [SchemeTag5]       = { purple, black,  black },
     [SchemeTag6]       = { yellow, black,  black },
     [SchemeTag7]       = { pink,   black,  black },
     [SchemeTag8]       = { cyan,   black,  black },
+    [SchemeTag9]       = { green,   black,  black },
     [SchemeLayout]     = { green,  black,  black }, 
     [SchemeBtnPrev]    = { green,  black,  black }, 
     [SchemeBtnNext]    = { yellow, black,  black }, 
@@ -65,7 +66,7 @@ static char *tags[] = {"", "", "", "", "", "", "", "", "
 
 static const int tagschemes[] = { SchemeTag1, SchemeTag2, SchemeTag3,
                                   SchemeTag4, SchemeTag5, SchemeTag6,
-                                  SchemeTag7, SchemeTag8
+                                  SchemeTag7, SchemeTag8, SchemeTag9
                                 };
 
 static const unsigned int ulinepad		= 5;	/* horizontal padding between the underline and tag */
@@ -172,32 +173,26 @@ static const char *upvol[]   			= { "/usr/share/archcraft/dwm/bin/dwmvolume.sh",
 static const char *downvol[] 			= { "/usr/share/archcraft/dwm/bin/dwmvolume.sh", "--dec",    	NULL };
 static const char *upbl[] 				= { "/usr/share/archcraft/dwm/bin/dwmbrightness.sh", "--inc",    NULL };
 static const char *downbl[] 			= { "/usr/share/archcraft/dwm/bin/dwmbrightness.sh", "--dec",  NULL };
+static const char *spotifyplaypause[] 			= { "toggle-spotify", "--play-pause",  NULL };
+static const char *spotifynext[] 			      = { "toggle-spotify", "--next",  NULL };
 
 /* Screenshot */
-static const char *shotnow[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--now", NULL };
-static const char *shotin5[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--in5", NULL };
-static const char *shotin10[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--in10", NULL };
-static const char *shotwin[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--win", NULL };
-static const char *shotarea[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--area", NULL };
+static const char *shotnow[]  			= { "flameshot", "gui", NULL };
 
 /* ******************** Keybindings ******************** */
 static Key keys[] = {
     /* modifier 				key 						function 		argument */
 
-	// Hardware Keys -----------
+	// Media -----------
 	{ 0, 						XF86XK_AudioMute, 			                spawn, {.v = mutevol } },
-	{ 0, 						XF86XK_AudioMicMute, 		                spawn, {.v = mutemic } },
+	{ MODKEY, 			XK_slash, 		                          spawn, {.v = mutemic } },
 	{ 0, 						XF86XK_AudioLowerVolume, 	              spawn, {.v = downvol } },
 	{ 0, 						XF86XK_AudioRaiseVolume, 	              spawn, {.v = upvol   } },
+	{ 0, 						XF86XK_AudioPlay, 	                    spawn, {.v = spotifyplaypause } },
+	{ 0, 						XF86XK_AudioNext, 	                    spawn, {.v = spotifynext } },
 	{ 0, 						XF86XK_MonBrightnessUp, 	              spawn, {.v = upbl   } },
 	{ 0, 						XF86XK_MonBrightnessDown, 	            spawn, {.v = downbl   } },
-
-	// Print Keys -----------
-	{ 0, 						                    XK_Print, 					spawn, {.v = shotnow } },
-	{ ALTKEY, 					                XK_Print, 					spawn, {.v = shotin5 } },
-	{ ShiftMask, 				                XK_Print, 					spawn, {.v = shotin10 } },
-	{ ControlMask, 				              XK_Print, 					spawn, {.v = shotwin } },
-	{ MODKEY, 					                XK_Print, 					spawn, {.v = shotarea } },
+	{ 0, 						XK_Print, 					                    spawn, {.v = shotnow } },
 
 	// Terminals -----------
     { MODKEY, 					              XK_Return, 					spawn, {.v = stcmd } },
@@ -213,7 +208,7 @@ static Key keys[] = {
     { MODKEY, 					              XK_d, 						  spawn, {.v = rofi_cmd } },
     { MODKEY, 					              XK_m, 						  spawn, {.v = rofi_nmcmd } },
     { MODKEY, 					              XK_r, 						  spawn, {.v = rofi_rootcmd } },
-    { MODKEY, 					              XK_Backspace,			  spawn, {.v = rofi_powercmd } },
+    { MODKEY, 					              XK_BackSpace,			  spawn, {.v = rofi_powercmd } },
 
 	// Misc -----------
     { MODKEY, 					              XK_p, 						  spawn, {.v = cpickcmd } },
