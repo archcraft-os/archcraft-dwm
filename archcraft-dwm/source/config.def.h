@@ -62,7 +62,8 @@ static const char *colors[][3]  = {
 };
 
 /* ******************** Tags/Workspaces ******************** */
-static char *tags[] = {"", "", "", "", "", "", "", "", "9"};
+static char *tags[] = {"", "", "", "󰾡", "", "6", "8", "", ""};
+static char *tags2[] = {"", "󰮠", "", "4", "5", "7", "󰖠", "󰒱", ""};
 
 static const int tagschemes[] = { SchemeTag1, SchemeTag2, SchemeTag3,
                                   SchemeTag4, SchemeTag5, SchemeTag6,
@@ -175,6 +176,8 @@ static const char *upbl[] 				= { "/usr/share/archcraft/dwm/bin/dwmbrightness.sh
 static const char *downbl[] 			= { "/usr/share/archcraft/dwm/bin/dwmbrightness.sh", "--dec",  NULL };
 static const char *spotifyplaypause[] 			= { "toggle-spotify", "--play-pause",  NULL };
 static const char *spotifynext[] 			      = { "toggle-spotify", "--next",  NULL };
+static const char *switchaudio[] 			      = { "switch-audio", "toggle",  NULL };
+static const char *rotatescreen[] 			      = { "rotate-screen", "--toggle",  NULL };
 
 /* Screenshot */
 static const char *shotnow[]  			= { "flameshot", "gui", NULL };
@@ -193,6 +196,8 @@ static Key keys[] = {
 	{ 0, 						XF86XK_MonBrightnessUp, 	              spawn, {.v = upbl   } },
 	{ 0, 						XF86XK_MonBrightnessDown, 	            spawn, {.v = downbl   } },
 	{ 0, 						XK_Print, 					                    spawn, {.v = shotnow } },
+	{ 0, 						XK_Pause, 					                    spawn, {.v = switchaudio } },
+	{ MODKEY, 			XK_n, 					                        spawn, {.v = rotatescreen } },
 
 	// Terminals -----------
     { MODKEY, 					              XK_Return, 					spawn, {.v = stcmd } },
