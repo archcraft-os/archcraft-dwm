@@ -88,7 +88,8 @@ spotify() {
   titleSize=${#title}
 
   if [[ $titleSize -le $maxChars ]]; then
-		printf "^c#56B6C2^  $title"
+	printf "^c#aed581^^b#1e222a^ 󰎈 $artist"
+	printf "^c#abb2bf^$title"
     return
   fi
 
@@ -106,7 +107,7 @@ spotify() {
 
   trimmedTitle=${title:currentStart:maxChars}
 
-	printf "^c#8bc34a^^b#1e222a^ 󰎈 $artist"
+	printf "^c#aed581^^b#1e222a^ 󰎈 $artist"
 	printf "^c#abb2bf^$trimmedTitle"
 }
 

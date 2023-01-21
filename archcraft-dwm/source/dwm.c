@@ -1432,9 +1432,9 @@ void drawbar(Monitor *m) {
     stw = getsystraywidth();
 
   /* draw status first so it can be overdrawn by tags later */
-  if (m == selmon) { /* status is only drawn on selected monitor */
+  //if (m == selmon) { /* status is only drawn on selected monitor */
     sw = mw - drawstatusbar(m, bh_n, stext);
-  }
+  //}
 
   resizebarwin(m);
   for (c = m->clients; c; c = c->next) {
@@ -1442,11 +1442,14 @@ void drawbar(Monitor *m) {
     if (c->isurgent)
       urg |= c->tags;
   }
+
   x = borderpx;
   for (i = 0; i < LENGTH(tags); i++) {
-    w = TEXTW(tags[i]);
+    char* tagtext = m->num == 0 ? tags[i] : tags2[i];
+
+    w = TEXTW(tagtext);
     drw_setscheme(drw, scheme[occ & 1 << i ? (m->colorfultag ? tagschemes[i] : SchemeSel) : SchemeTag]);
-    drw_text(drw, x, y, w, bh_n, lrpad / 2, tags[i], urg & 1 << i);
+    drw_text(drw, x, y, w, bh_n, lrpad / 2, tagtext, urg & 1 << i);
     if (ulineall ||
         m->tagset[m->seltags] &
             1 << i) /* if there are conflicts, just move these lines directly
@@ -1604,7 +1607,7 @@ void expose(XEvent *e) {
   XExposeEvent *ev = &e->xexpose;
 
   if (ev->count == 0 && (m = wintomon(ev->window))) {
-    drawbar(m);
+    drawbars();
     if (m == selmon)
       updatesystray();
   }
@@ -3429,7 +3432,7 @@ void updatesizehints(Client *c) {
 void updatestatus(void) {
   if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
     strcpy(stext, "dwm-" VERSION);
-  drawbar(selmon);
+  drawbars();
   updatesystray();
 }
 
