@@ -33,6 +33,7 @@ static const int scalepreview       		= 4;
 static       int tag_preview      			= 0;	/* 1 means enable, 0 is off */
 
 /* ******************** Fonts ******************** */
+//static const char *fonts[]          		= { "JetBrainsMono Nerd Font:size=14", "Fira Code:size=10" };
 static const char *fonts[]          		= { "JetBrainsMono Nerd Font:size=10" };
 static const char dmenufont[]       		= "monospace:size=10";
 static const int colorfultag        		= 1;  /* 0 means use SchemeSel for selected non vacant tag */
@@ -62,8 +63,8 @@ static const char *colors[][3]  = {
 };
 
 /* ******************** Tags/Workspaces ******************** */
-static char *tags[] = {"", "", "", "󰾡", "", "6", "8", "", ""};
-static char *tags2[] = {"", "󰮠", "", "4", "5", "7", "󰖠", "󰒱", ""};
+static char *tags[] = {"󰈹", "", "", "󰆼", "󰉋", "6", "7", "8", "󰓓"};
+static char *tags2[] = {"󰈹", "󰮠", "", "4", "󰉋", "7", "󰖠", "󰒱", "阮"};
 
 static const int tagschemes[] = { SchemeTag1, SchemeTag2, SchemeTag3,
                                   SchemeTag4, SchemeTag5, SchemeTag6,
