@@ -26,7 +26,7 @@ wlan() {
 ## Time
 clock() {
 	printf "^c#1e222a^^b#668ee3^  "
-	printf "^c#1e222a^^b#7aa2f7^ $(date '+%a, %H:%M') "
+	printf "^c#1e222a^^b#7aa2f7^ $(date '+%a, %d/%m %H:%M') "
 }
 
 ## System Update
@@ -79,10 +79,41 @@ brightness() {
 	fi
 }
 
+currentSignal=1
+maxChars=30
+spotify() {
+	artist=`playerctl -p spotify metadata --format '{{artist}}: '`
+	title=`playerctl -p spotify metadata --format '{{title}}'`
+	#album=`playerctl -p spotify metadata --format ' <{{album}}>'`
+  titleSize=${#title}
+
+  if [[ $titleSize -le $maxChars ]]; then
+		printf "^c#56B6C2^  $title"
+    return
+  fi
+
+  endIndex=$((titleSize - maxChars))
+  mirrorBoundary=$((endIndex * 2))
+  currentVirtualIndex=$((interval % mirrorBoundary))
+  isInReverseDirection=$((currentVirtualIndex / endIndex))
+
+  currentStart=$currentVirtualIndex
+  if [[ isInReverseDirection -eq 0 ]]; then
+    currentStart=$currentVirtualIndex
+  else
+    currentStart=$((mirrorBoundary - currentVirtualIndex))
+  fi
+
+  trimmedTitle=${title:currentStart:maxChars}
+
+	printf "^c#8bc34a^^b#1e222a^ 󰎈 $artist"
+	printf "^c#abb2bf^$trimmedTitle"
+}
+
 ## Main
 while true; do
-  [ "$interval" == 0 ] || [ $(("$interval" % 3600)) == 0 ] && updates=$(updates)
+  #[ "$interval" == 0 ] || [ $(("$interval" % 3600)) == 0 ] && updates=$(updates)
   interval=$((interval + 1))
 
-  sleep 1 && xsetroot -name "$(cpu_info) $(memory) $(clock)"
+  sleep 0.15 && xsetroot -name "$(spotify) $(cpu_info) $(memory) $(clock)"
 done
