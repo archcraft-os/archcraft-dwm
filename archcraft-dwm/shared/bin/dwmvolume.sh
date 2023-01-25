@@ -22,7 +22,7 @@ get_icon() {
 		icon="$iDIR/volume-low.png"
 	elif [[ ("$current" -ge "30") && ("$current" -le "60") ]]; then
 		icon="$iDIR/volume-mid.png"
-	elif [[ ("$current" -ge "60") && ("$current" -le "100") ]]; then
+	elif [[ ("$current" -ge "60")]]; then
 		icon="$iDIR/volume-high.png"
 	fi
 }
@@ -35,13 +35,13 @@ notify_user() {
 # Increase Volume
 inc_volume() {
 	[[ `pulsemixer --get-mute` == 1 ]] && pulsemixer --unmute
-	pulsemixer --max-volume 100 --change-volume +5 && get_icon && notify_user
+  pactl set-sink-volume @DEFAULT_SINK@ +5%  && get_icon && notify_user
 }
 
 # Decrease Volume
 dec_volume() {
 	[[ `pulsemixer --get-mute` == 1 ]] && pulsemixer --unmute
-	pulsemixer --max-volume 100 --change-volume -5 && get_icon && notify_user
+  pactl set-sink-volume @DEFAULT_SINK@ -5%  && get_icon && notify_user
 }
 
 # Toggle Mute

@@ -37,7 +37,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 xset r rate 260 60
 flameshot &
 spotify &
-xrandr --output DVI-D-0 --off --output HDMI-0 --mode 1920x1080 --pos 1920x0 --rotate normal --brightness 0.9 --output DP-0 --off --output DP-1 --off --output DVI-D-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --brightness 1 $
 
 if [[ "$USER" = "pedroma" ]]; then
   slack &

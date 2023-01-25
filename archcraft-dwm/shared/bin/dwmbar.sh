@@ -2,17 +2,19 @@
 
 interval=0
 
+#^b#1e222a^ <- no background color
+
 ## Cpu Info
 cpu_info() {
 	cpu_load=$(grep -o "^[^ ]*" /proc/loadavg)
 
-	printf "^c#3b414d^ ^b#7ec7a2^ CPU"
+	printf "^c#3b414d^ ^b#7ec7a2^ 󰻠"
 	printf "^c#abb2bf^ ^b#353b45^ $cpu_load"
 }
 
 ## Memory
 memory() {
-	printf "^c#C678DD^^b#1e222a^   $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g) "
+	printf "^c#C678DD^^b#1e222a^  󰍛 $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g) "
 }
 
 ## Wi-fi
@@ -79,17 +81,29 @@ brightness() {
 	fi
 }
 
+mic() {
+	ID="`pulsemixer --list-sources | grep 'Default' | cut -d',' -f1 | cut -d' ' -f3`"
+	if [[ `pulsemixer --id $ID --get-mute` == 0 ]]; then
+	  printf "^c#ffffff^^b#d81b60^ 󰍬 "
+	  printf "^c#abb2bf^^b#353b45^ ON "
+	else
+	  printf "^c#ffffff^^b#555555^ 󰍭 "
+	  printf "^c#abb2bf^^b#353b45^ OFF "
+	fi
+	  printf "^b#1e222a^"
+}
+
 currentSignal=1
 maxChars=30
 spotify() {
-	artist=`playerctl -p spotify metadata --format '{{artist}}: '`
+	artist=`playerctl -p spotify metadata --format '{{artist}}:'`
 	title=`playerctl -p spotify metadata --format '{{title}}'`
 	#album=`playerctl -p spotify metadata --format ' <{{album}}>'`
   titleSize=${#title}
 
   if [[ $titleSize -le $maxChars ]]; then
 	printf "^c#aed581^^b#1e222a^ 󰎈 $artist"
-	printf "^c#abb2bf^$title"
+	printf "^c#abb2bf^ $title"
     return
   fi
 
@@ -108,7 +122,7 @@ spotify() {
   trimmedTitle=${title:currentStart:maxChars}
 
 	printf "^c#aed581^^b#1e222a^ 󰎈 $artist"
-	printf "^c#abb2bf^$trimmedTitle"
+	printf "^c#abb2bf^ $trimmedTitle"
 }
 
 ## Main
@@ -116,5 +130,5 @@ while true; do
   #[ "$interval" == 0 ] || [ $(("$interval" % 3600)) == 0 ] && updates=$(updates)
   interval=$((interval + 1))
 
-  sleep 0.15 && xsetroot -name "$(spotify) $(cpu_info) $(memory) $(clock)"
+  sleep 0.15 && xsetroot -name "$(spotify) $(mic) $(cpu_info) $(memory) $(clock)"
 done
