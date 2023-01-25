@@ -1007,7 +1007,7 @@ Monitor *dirtomon(int dir) {
 }
 
 int drawstatusbar(Monitor *m, int bh, char *stext) {
-  int ret, i, w, x, len;
+  int ret, i, w, x, len, stw = 0;
   short isCode = 0;
   char *text;
   char *p;
@@ -1043,9 +1043,13 @@ int drawstatusbar(Monitor *m, int bh, char *stext) {
     isCode = 0;
   text = p;
 
+  // Only reserve space for systray on focused monitor
+  if(m->num == selmon->num)
+    stw = getsystraywidth();
+
   w += horizpadbar;
   ret = x = m->ww - m->gappov * 2 - borderpx - w;
-  x = m->ww - m->gappov * 2 - borderpx - w - getsystraywidth();
+  x = m->ww - m->gappov * 2 - borderpx - w - stw;
 
   drw_setscheme(drw, scheme[LENGTH(colors)]);
   drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
