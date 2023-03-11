@@ -39,10 +39,11 @@
 #ifdef XINERAMA
 #include <X11/extensions/Xinerama.h>
 #endif /* XINERAMA */
-#include "drw.h"
-#include "util.h"
 #include <Imlib2.h>
 #include <X11/Xft/Xft.h>
+
+#include "drw.h"
+#include "util.h"
 
 /* macros */
 #define BUTTONMASK (ButtonPressMask | ButtonReleaseMask)
