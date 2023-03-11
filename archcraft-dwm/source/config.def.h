@@ -98,12 +98,14 @@ static const Rule rules[] = {
 	{ "VirtualBox Manager",  			NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "Nm-connection-editor",  			NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "Xfce4-power-manager-settings",  	NULL,       NULL,       0,       	  1,           1,           -1 },
+	{ NULL,  	NULL,       "Picture-in-Picture",       0,       	  0,           1,           -1 },
+	{ "firefox",  	"Devtools",       NULL,       0,       	  0,           1,           -1 },
 };
 
 /* ******************** Layout(s) ******************** */
 static const float mfact     		= 0.50;		/* factor of master area size [0.05..0.95] */
 static const int nmaster     		= 1;		/* number of clients in master area */
-static const int resizehints 		= 0;		/* 1 means respect size hints in tiled resizals */
+static const int resizehints 		= 1;		/* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen 	= 1;		/* 1 will force focus on the fullscreen window */
 
 #define FORCE_VSPLIT 1		/* nrowgrid layout: force two clients to always split vertically */

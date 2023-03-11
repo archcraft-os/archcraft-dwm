@@ -17,9 +17,6 @@ xsetroot -cursor_name left_ptr
 # Polkit agent
 /usr/lib/xfce-polkit/xfce-polkit &
 
-# Restore wallpaper
-hsetroot -cover /usr/share/archcraft/dwm/wallpapers/default.png
-
 # Lauch dwmbar
 /usr/share/archcraft/dwm/bin/dwmbar.sh &
 
@@ -33,14 +30,16 @@ hsetroot -cover /usr/share/archcraft/dwm/wallpapers/default.png
 wmname "LG3D"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# Some programs regarding X are autostarted at /usr/share/sddm/scripts/
 ## Add your autostart programs here --------------
-xset r rate 260 60
+xset r rate 260 60 &
+xmousepasteblock &
 flameshot &
 spotify &
+sleep 1 && wallpaper-engine &
 
 if [[ "$USER" = "pedroma" ]]; then
   slack &
-  obs &
 fi
 
 
