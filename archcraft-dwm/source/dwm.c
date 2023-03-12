@@ -1498,6 +1498,12 @@ void drawbar(Monitor *m) {
       drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
       if (m->sel->isfloating)
         drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+      if (m->sel->issticky)
+        drw_polygon(drw, x + boxs, m->sel->isfloating ? boxs * 2 + boxw : boxs,
+                    stickyiconbb.x, stickyiconbb.y, boxw,
+                    boxw * stickyiconbb.y / stickyiconbb.x, stickyicon,
+                    LENGTH(stickyicon), Nonconvex,
+                    m->sel->tags & m->tagset[m->seltags]);
     } else {
       drw_setscheme(drw, scheme[SchemeNorm]);
       drw_rect(drw, x, y, w - m->gappov * 2, bh_n, 1, 1);
@@ -3140,10 +3146,10 @@ void togglefullscr(const Arg *arg) {
 }
 
 void togglesticky(const Arg *arg) {
-	if (!selmon->sel)
-		return;
-    setsticky(selmon->sel, !selmon->sel->issticky);
-	arrange(selmon);
+  if (!selmon->sel)
+    return;
+  setsticky(selmon->sel, !selmon->sel->issticky);
+  arrange(selmon);
 }
 
 void toggletag(const Arg *arg) {
