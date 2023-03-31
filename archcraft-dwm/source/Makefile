@@ -36,7 +36,9 @@ dist: clean
 	gzip dwm-${VERSION}.tar
 	rm -rf dwm-${VERSION}
 
-install: all
+install: dirtyinstall clean
+
+dirtyinstall: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	cp -f dwm dwmc ${DESTDIR}${PREFIX}/bin
 	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm

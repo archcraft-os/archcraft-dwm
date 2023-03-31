@@ -49,10 +49,4 @@ package() {
   cp -r ${srcdir}/shared 		"$_dwmdir"/dwm
   chmod +x "$_dwmdir"/dwm/bin/*
   chmod +x "$_dwmdir"/dwm/rofi/bin/*
-
-  ## Copy Source files in /opt
-  local _dwmsrc=${pkgdir}/opt/dwm-source
-  mkdir -p "$_dwmsrc"
-
-  cp -r ${srcdir}/source/* 		"$_dwmsrc"  
 }

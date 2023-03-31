@@ -11,7 +11,7 @@ terminal=" Alacritty"
 files=" Thunar"
 editor=" Geany"
 clifm=" Ranger"
-vim=" Vim"
+nvim=" Nvim"
 
 # Variable passed to rofi
 options="$terminal\n$files\n$editor\n$clifm\n$vim"

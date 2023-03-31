@@ -19,17 +19,14 @@ trap exit_on_signal_SIGTERM SIGTERM
 # Build packages
 build_pkg () {
 	echo -e "\nBuilding Package ${1} - \n"
-	cd ${1} && makepkg -sc
+	cd ${1}
+  rm -r pkg src *.pkg.tar.zst
+  makepkg -sc
 
 	if [[ "$1" == "archcraft-st" ]]; then
 		rm *.tar.gz
 	fi
 	
-	RDIR='../../../pkgs/x86_64'
-	if [[ -d "$RDIR" ]]; then
-		mv -f *.pkg.tar.zst "$RDIR"
-		echo -e "\nPackage moved to Repository.\n[!] Don't forget to update the database.\n"
-	fi
 	cd -
 }
 

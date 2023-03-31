@@ -4,9 +4,9 @@
 ## Autostart Programs
 
 # Kill already running process
-_ps=(picom dunst ksuperkey mpd xfce-polkit xfce4-power-manager)
+_ps=(picom dunst ksuperkey mpd xfce-polkit xfce4-power-manager dwmbar)
 for _prs in "${_ps[@]}"; do
-	if [[ `pidof ${_prs}` ]]; then
+	if [[ `pgrep ${_prs}` ]]; then
 		killall -9 ${_prs}
 	fi
 done
@@ -17,16 +17,6 @@ xsetroot -cursor_name left_ptr
 # Polkit agent
 /usr/lib/xfce-polkit/xfce-polkit &
 
-# Enable power management
-xfce4-power-manager &
-
-# Enable Super Keys For Menu
-ksuperkey -e 'Super_L=Alt_L|F1' &
-ksuperkey -e 'Super_R=Alt_L|F1' &
-
-# Restore wallpaper
-hsetroot -cover /usr/share/archcraft/dwm/wallpapers/default.png
-
 # Lauch dwmbar
 /usr/share/archcraft/dwm/bin/dwmbar.sh &
 
@@ -36,14 +26,22 @@ hsetroot -cover /usr/share/archcraft/dwm/wallpapers/default.png
 # Lauch compositor
 /usr/share/archcraft/dwm/bin/dwmcomp.sh
 
-# Start mpd
-exec mpd &
-
 # Fix Java problems
 wmname "LG3D"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# Some programs regarding X are autostarted at /usr/share/sddm/scripts/
 ## Add your autostart programs here --------------
+xset r rate 260 60 &
+xmousepasteblock &
+flameshot &
+spotify &
+sleep 1 && wallpaper-engine &
+
+if [[ "$USER" = "pedroma" ]]; then
+  slack &
+fi
+
 
 ## -----------------------------------------------
 
