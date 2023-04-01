@@ -2,7 +2,7 @@
 
 pkgname=archcraft-dwm
 pkgver=2.0
-pkgrel=0
+pkgrel=1
 pkgdesc="DWM for Archcraft"
 url="https://github.com/archcraft-os/archcraft-dwm"
 arch=('any')
