@@ -143,42 +143,46 @@ static const char *dmenucmd[]  			= { "dmenu", NULL };
 
 /* Launch Apps */
 static const char *stcmd[]  			= { "st", NULL };
-static const char *termcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmterm.sh", NULL };
-static const char *floatterm[]  		= { "/usr/share/archcraft/dwm/bin/dwmterm.sh", "--float", NULL };
-static const char *fmcmd[]    			= { "/usr/share/archcraft/dwm/bin/dwmapps.sh", "--file", NULL };
-static const char *editcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmapps.sh", "--editor", NULL };
-static const char *webcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmapps.sh", "--web", NULL };
+static const char *termcmd[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_term", NULL };
+static const char *floatterm[]  		= { "/usr/share/archcraft/dwm/scripts/dwm_term", "--float", NULL };
+static const char *fullterm[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_term", "--full", NULL };
+static const char *fmcmd[]    			= { "/usr/share/archcraft/dwm/scripts/dwm_apps", "--file", NULL };
+static const char *editcmd[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_apps", "--editor", NULL };
+static const char *webcmd[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_apps", "--web", NULL };
 
 /* Rofi Menus */
-static const char *rofi_cmd[] 			= { "/usr/share/archcraft/dwm/rofi/bin/launcher", NULL };
-static const char *rofi_rootcmd[] 		= { "/usr/share/archcraft/dwm/rofi/bin/asroot", NULL };
-static const char *rofi_layoutcmd[] 	= { "/usr/share/archcraft/dwm/rofi/bin/layouts", NULL };
-static const char *rofi_mpdcmd[] 		= { "/usr/share/archcraft/dwm/rofi/bin/mpd", NULL };
-static const char *rofi_nmcmd[]    		= { "/usr/share/archcraft/dwm/rofi/bin/network_menu", NULL };
-static const char *rofi_powercmd[]  	= { "/usr/share/archcraft/dwm/rofi/bin/powermenu", NULL };
-static const char *rofi_shotcmd[]  		= { "/usr/share/archcraft/dwm/rofi/bin/screenshot", NULL };
-static const char *rofi_wincmd[]  		= { "/usr/share/archcraft/dwm/rofi/bin/windows", NULL };
+static const char *rofi_cmd[] 			= { "/usr/share/archcraft/dwm/scripts/rofi_launcher", NULL };
+static const char *rofi_rootcmd[] 		= { "/usr/share/archcraft/dwm/scripts/rofi_asroot", NULL };
+static const char *rofi_layoutcmd[] 	= { "/usr/share/archcraft/dwm/scripts/rofi_layouts", NULL };
+static const char *rofi_mpdcmd[] 		= { "/usr/share/archcraft/dwm/scripts/rofi_music", NULL };
+static const char *rofi_nmcmd[]    		= { "/usr/share/archcraft/dwm/scripts/network_menu", NULL };
+static const char *rofi_powercmd[]  	= { "/usr/share/archcraft/dwm/scripts/rofi_powermenu", NULL };
+static const char *rofi_shotcmd[]  		= { "/usr/share/archcraft/dwm/scripts/rofi_screenshot", NULL };
+static const char *rofi_wincmd[]  		= { "/usr/share/archcraft/dwm/scripts/rofi_windows", NULL };
+static const char *rofi_bluecmd[]  		= { "/usr/share/archcraft/dwm/scripts/rofi_bluetooth", NULL };
+static const char *rofi_runcmd[]  		= { "/usr/share/archcraft/dwm/scripts/rofi_runner", NULL };
 
 /* Misc */
-static const char *cpickcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmcolorpicker.sh", NULL };
+static const char *cpickcmd[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_colorpicker", NULL };
+static const char *musicmd[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_music", NULL };
 static const char *lockcmd[]  			= { "betterlockscreen", "--lock", NULL };
-static const char *layoutswitcher[]  	= { "/usr/share/archcraft/dwm/bin/layoutmenu.sh", NULL };
+static const char *layoutswitcher[]  	= { "/usr/share/archcraft/dwm/scripts/dwm_layouts", NULL };
 
 /* Hardware keys for volume and brightness */
 #include <X11/XF86keysym.h>
-static const char *mutevol[] 			= { "/usr/share/archcraft/dwm/bin/dwmvolume.sh", "--toggle",  NULL };
-static const char *mutemic[] 			= { "/usr/share/archcraft/dwm/bin/dwmvolume.sh", "--toggle-mic",  NULL };
-static const char *upvol[]   			= { "/usr/share/archcraft/dwm/bin/dwmvolume.sh", "--inc",  	NULL };
-static const char *downvol[] 			= { "/usr/share/archcraft/dwm/bin/dwmvolume.sh", "--dec",    	NULL };
-static const char *upbl[] 				= { "/usr/share/archcraft/dwm/bin/dwmbrightness.sh", "--inc",    NULL };
-static const char *downbl[] 			= { "/usr/share/archcraft/dwm/bin/dwmbrightness.sh", "--dec",  NULL };
+static const char *mutevol[] 			= { "/usr/share/archcraft/dwm/scripts/dwm_volume", "--toggle",  NULL };
+static const char *mutemic[] 			= { "/usr/share/archcraft/dwm/scripts/dwm_volume", "--toggle-mic",  NULL };
+static const char *upvol[]   			= { "/usr/share/archcraft/dwm/scripts/dwm_volume", "--inc",  	NULL };
+static const char *downvol[] 			= { "/usr/share/archcraft/dwm/scripts/dwm_volume", "--dec",    	NULL };
+static const char *upbl[] 				= { "/usr/share/archcraft/dwm/scripts/dwm_brightness", "--inc",    NULL };
+static const char *downbl[] 			= { "/usr/share/archcraft/dwm/scripts/dwm_brightness", "--dec",  NULL };
 
 /* Screenshot */
-static const char *shotnow[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--now", NULL };
-static const char *shotin5[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--in5", NULL };
-static const char *shotin10[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--in10", NULL };
-static const char *shotwin[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--win", NULL };
-static const char *shotarea[]  			= { "/usr/share/archcraft/dwm/bin/dwmscreenshot.sh", "--area", NULL };
+static const char *shotnow[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_screenshot", "--now", NULL };
+static const char *shotin5[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_screenshot", "--in5", NULL };
+static const char *shotin10[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_screenshot", "--in10", NULL };
+static const char *shotwin[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_screenshot", "--win", NULL };
+static const char *shotarea[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_screenshot", "--area", NULL };
 
 /* ******************** Keybindings ******************** */
 static Key keys[] = {
@@ -203,6 +207,7 @@ static Key keys[] = {
     { MODKEY, 					XK_Return, 					spawn, {.v = stcmd } },
     { MODKEY|ShiftMask, 		XK_Return, 					spawn, {.v = floatterm } },
     { MODKEY|ControlMask, 		XK_Return, 					spawn, {.v = termcmd } },
+    { MODKEY|ALTKEY, 			XK_Return, 					spawn, {.v = fullterm } },
 
 	// Launch Apps -----------
     { MODKEY|ShiftMask, 		XK_f, 						spawn, {.v = fmcmd } },
@@ -211,8 +216,10 @@ static Key keys[] = {
 	
 	// Rofi Menus -----------
     { ALTKEY, 					XK_F1, 						spawn, {.v = rofi_cmd } },
+    { ALTKEY, 					XK_F2, 						spawn, {.v = rofi_runcmd } },
     { MODKEY, 					XK_m, 						spawn, {.v = rofi_mpdcmd } },
     { MODKEY, 					XK_n, 						spawn, {.v = rofi_nmcmd } },
+    { MODKEY, 					XK_b, 						spawn, {.v = rofi_bluecmd } },
     { MODKEY, 					XK_r, 						spawn, {.v = rofi_rootcmd } },
     { MODKEY, 					XK_x, 						spawn, {.v = rofi_powercmd } },
     { MODKEY, 					XK_s, 						spawn, {.v = rofi_shotcmd } },
@@ -221,6 +228,7 @@ static Key keys[] = {
 	// Misc -----------
     { MODKEY, 					XK_p, 						spawn, {.v = cpickcmd } },
     { ALTKEY|ControlMask, 		XK_l, 						spawn, {.v = lockcmd } },
+    { ALTKEY|ControlMask, 		XK_m, 						spawn, {.v = musicmd } },
 
 	// Tags -----------
     TAGKEYS( 					XK_1, 						0)
@@ -285,7 +293,7 @@ static Key keys[] = {
     { MODKEY|ControlMask, 		XK_Right, 					setmfact, {.f = +0.05} }, // Shrink right
 
 	/* Misc */
-    { MODKEY, 					XK_b, 						togglebar, {0} }, // Toggle bar
+    { MODKEY|ShiftMask, 		XK_b, 						togglebar, {0} }, // Toggle bar
     { MODKEY, 					XK_Tab, 					zoom, {0} }, // Switch to master
     { ALTKEY, 					XK_Tab, 					view, {0} }, // Switch to last tag
     { MODKEY, 					XK_d, 						hidewin, {0} }, // Hide window

@@ -1,2 +1,9 @@
+archcraft-dwm/src
+archcraft-dwm/pkg
+archcraft-dwm/*.pkg.tar.zst
+archcraft-st/src
+archcraft-st/pkg
+archcraft-st/*.tar.gz
+archcraft-st/*.pkg.tar.zst
 cleanup.sh
 push.sh

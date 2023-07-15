@@ -2,6 +2,6 @@
 Encoding=UTF-8
 Name=DWM
 Comment=Dynamic window manager
-Exec=/usr/share/archcraft/dwm/bin/autostart.sh
+Exec=/usr/share/archcraft/dwm/scripts/dwm_autostart
 Icon=dwm
 Type=XSession

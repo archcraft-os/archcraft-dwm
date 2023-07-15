@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+##
+## Autostart Programs
+
+# dwm dir
+ddir="/usr/share/archcraft/dwm"
+
+# Kill already running process
+_ps=(xsettingsd ksuperkey)
+for _prs in "${_ps[@]}"; do
+	if [[ `pidof ${_prs}` ]]; then
+		killall -9 ${_prs}
+	fi
+done
+
+# Lauch xsettingsd daemon
+xsettingsd --config="$ddir"/xsettingsd &
+
+# polkit agent
+if [[ ! `pidof xfce-polkit` ]]; then
+	/usr/lib/xfce-polkit/xfce-polkit &
+fi
+
+# Enable power management
+xfce4-power-manager &
+
+# Enable Super Keys For Menu
+ksuperkey -e 'Super_L=Alt_L|F1' &
+ksuperkey -e 'Super_R=Alt_L|F1' &
+
+# Fix cursor
+xsetroot -cursor_name left_ptr
+
+# Restore wallpaper
+hsetroot -root -cover "$ddir"/theme/wallpaper
+
+# Launch notification daemon
+"$ddir"/scripts/dwm_dunst
+
+# Launch simple status bar
+"$ddir"/scripts/dwm_bar &
+
+# Launch polybar
+#"$ddir"/scripts/dwm_polybar
+
+# Launch compositor
+"$ddir"/scripts/dwm_comp
+
+# Start mpd
+exec mpd &
+
+# Fix problems with Java apps
+wmname "LG3D"
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+## Add your autostart programs here --------------
+
+## -----------------------------------------------
+
+# Launch DWM
+while dwm; [ $? -ne 0  ]; do echo "start dwm"; done

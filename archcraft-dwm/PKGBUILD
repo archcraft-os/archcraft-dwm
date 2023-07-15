@@ -2,7 +2,7 @@
 
 pkgname=archcraft-dwm
 pkgver=2.0
-pkgrel=2
+pkgrel=3
 pkgdesc="DWM for Archcraft"
 url="https://github.com/archcraft-os/archcraft-dwm"
 arch=('any')
@@ -17,6 +17,7 @@ depends=('libx11' 'libxinerama' 'libxft' 'freetype2'
 		'ksuperkey' 
 		'betterlockscreen'
 		'xfce4-power-manager' 
+		'xsettingsd'
 		'xorg-xsetroot'
 		'wmname'
 		'pulsemixer' 'light' 'xcolor'
@@ -47,8 +48,7 @@ package() {
   mkdir -p "$_dwmdir"
 
   cp -r ${srcdir}/shared 		"$_dwmdir"/dwm
-  chmod +x "$_dwmdir"/dwm/bin/*
-  chmod +x "$_dwmdir"/dwm/rofi/bin/*
+  chmod +x "$_dwmdir"/dwm/scripts/*
 
   ## Copy Source files in /opt
   local _dwmsrc=${pkgdir}/opt/dwm-source
