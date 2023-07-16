@@ -1,4 +1,4 @@
 # archcraft-dwm
-DWM for Archcraft
+ // Configuration : DWM
 
 Credit : [chadwm](https://github.com/siduck/chadwm)
