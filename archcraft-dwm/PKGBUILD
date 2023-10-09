@@ -2,57 +2,64 @@
 
 pkgname=archcraft-dwm
 pkgver=2.0
-pkgrel=3
+pkgrel=4
 pkgdesc="DWM for Archcraft"
-url="https://github.com/archcraft-os/archcraft-dwm"
 arch=('any')
+url="https://github.com/archcraft-os/archcraft-dwm"
 license=('GPL3')
-options=(zipman)
-depends=('libx11' 'libxinerama' 'libxft' 'freetype2' 
-		'archcraft-st' 'hsetroot'
-		'alacritty' 'thunar' 'geany'
-		'rofi' 'polybar' 'dunst'
-		'mpd' 'mpc'
-		'maim' 'xclip' 'viewnior' 'feh'
-		'ksuperkey' 
-		'betterlockscreen'
-		'xfce4-power-manager' 
-		'xsettingsd'
-		'xorg-xsetroot'
-		'wmname'
-		'pulsemixer' 'light' 'xcolor'
+depends=('libx11' 'libxinerama' 'libxft' 'freetype2'
+		'archcraft-st' 'hsetroot' 'xsettingsd'
+		'pulsemixer' 'light' 'rofi' 'dunst'
+)
+optdepends=('alacritty: default terminal emulator'
+			'thunar: default file manager'
+			'geany: default text editor'
+			'firefox: default web browser'
+			'viewnior: default image viewer'
+			'betterlockscreen: default lockscreen'
+			'ksuperkey: allows you to open the application launcher using the Super key'
+			'networkmanager-dmenu-git: control NetworkManager via rofi'
+			'mpd: server-side application for playing music, used in statusbars and scripts'
+			'mpc: minimalist command line interface to MPD'
+			'ffmpeg: complete solution to record, convert and stream audio and video, used in screenrecord scripts'
+			'maim: utility to take a screenshot, used in screenshot scripts'
+			'xclip: command line interface to the X11 clipboard'
+			'xcolor: lightweight color picker for X11'
+			'xfce4-power-manager: power manager'
+			'xorg-xsetroot: fix cursor theming, set root background'
+			'yad: display graphical dialogs from shell scripts'
+			'wmname: utility to set the name of your window manager'
 )
 conflicts=('dwm')
-provides=("${pkgname}")
-options=(!strip !emptydirs)
+options=(zipman !strip !emptydirs)
 install="${pkgname}.install"
 
 prepare() {
-	cp -af ../source/. ${srcdir}
-	cp -af ../source ${srcdir}
-	cp -af ../shared ${srcdir}
+	cp -af ../source/. "$srcdir"
+	cp -af ../source "$srcdir"
+	cp -af ../shared "$srcdir"
 }
 
 build() {
-  cd "$srcdir"
-  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11 FREETYPEINC=/usr/include/freetype2
+	cd "$srcdir"
+	make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11 FREETYPEINC=/usr/include/freetype2
 }
 
 package() {
-  cd "$srcdir"
-  make PREFIX=/usr DESTDIR="$pkgdir" install
-  install -m644 -D "$srcdir/dwm.desktop" "$pkgdir/usr/share/xsessions/dwm.desktop"
-
-  ## Install shared files
-  local _dwmdir=${pkgdir}/usr/share/archcraft
-  mkdir -p "$_dwmdir"
-
-  cp -r ${srcdir}/shared 		"$_dwmdir"/dwm
-  chmod +x "$_dwmdir"/dwm/scripts/*
-
-  ## Copy Source files in /opt
-  local _dwmsrc=${pkgdir}/opt/dwm-source
-  mkdir -p "$_dwmsrc"
-
-  cp -r ${srcdir}/source/* 		"$_dwmsrc"  
+	cd "$srcdir"
+	make PREFIX=/usr DESTDIR="$pkgdir" install
+	install -Dm644 "$srcdir/dwm.desktop" "$pkgdir/usr/share/xsessions/dwm.desktop"
+	
+	## Install shared files
+	local _wmdir="$pkgdir"/usr/share/archcraft
+	mkdir -p "$_wmdir"
+	
+	cp -r "$srcdir"/shared  "$_wmdir"/dwm
+	chmod +x "$_wmdir"/dwm/scripts/*
+	
+	## Copy source files in /opt
+	local _wmsrc="$pkgdir"/opt/dwm-source
+	mkdir -p "$_wmsrc"
+	
+	cp -r "$srcdir"/source/*  "$_wmsrc"
 }
