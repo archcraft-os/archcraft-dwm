@@ -7,6 +7,9 @@
 # dwm dir
 ddir="/usr/share/archcraft/dwm"
 
+# Export desktop session
+export XDG_CURRENT_DESKTOP='dwm'
+
 # Kill already running process
 _ps=(xsettingsd ksuperkey)
 for _prs in "${_ps[@]}"; do
