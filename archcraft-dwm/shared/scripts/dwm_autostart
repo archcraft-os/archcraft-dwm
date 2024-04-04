@@ -58,7 +58,17 @@ exec mpd &
 wmname "LG3D"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-## Add your autostart programs here --------------
+## Your autostart programs -----------------------
+
+## Add your autostart programs in ~/.dwm_autostart
+## Changes to this script will be overwritten on updates!
+
+if [[ -f "$HOME/.dwm_autostart" ]]; then
+	source "$HOME/.dwm_autostart"
+else
+	touch "$HOME/.dwm_autostart"
+	echo -e "# Example Autostart Programs\n\n#nm-applet --indicator & \n#blueman-applet &" > "$HOME/.dwm_autostart"
+fi
 
 ## -----------------------------------------------
 
