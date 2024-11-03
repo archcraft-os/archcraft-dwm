@@ -61,7 +61,7 @@ static const char *colors[][3]  = {
 };
 
 /* ******************** Tags/Workspaces ******************** */
-static char *tags[] = {"", "", "", "", "", "", "", ""};
+static char *tags[] = {" ", " ", " ", " ", " ", " ", " ", " "};
 
 static const int tagschemes[] = { SchemeTag1, SchemeTag2, SchemeTag3,
                                   SchemeTag4, SchemeTag5, SchemeTag6,
@@ -92,6 +92,7 @@ static const Rule rules[] = {
 	{ "Pavucontrol",  		NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "Lxappearance",  		NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "alacritty-float",  	NULL,       NULL,       0,       	  1,           1,           -1 },
+	{ "kitty-float",  		NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "VirtualBox Manager",  			NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "Nm-connection-editor",  			NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "Xfce4-power-manager-settings",  	NULL,       NULL,       0,       	  1,           1,           -1 },
@@ -146,6 +147,7 @@ static const char *stcmd[]  			= { "st", NULL };
 static const char *termcmd[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_term", NULL };
 static const char *floatterm[]  		= { "/usr/share/archcraft/dwm/scripts/dwm_term", "--float", NULL };
 static const char *fullterm[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_term", "--full", NULL };
+static const char *kittycmd[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_kitty", NULL };
 static const char *fmcmd[]    			= { "/usr/share/archcraft/dwm/scripts/dwm_apps", "--file", NULL };
 static const char *editcmd[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_apps", "--editor", NULL };
 static const char *webcmd[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_apps", "--web", NULL };
@@ -208,6 +210,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask, 		XK_Return, 					spawn, {.v = floatterm } },
     { MODKEY|ControlMask, 		XK_Return, 					spawn, {.v = termcmd } },
     { MODKEY|ALTKEY, 			XK_Return, 					spawn, {.v = fullterm } },
+    { ALTKEY|ControlMask, 		XK_t, 						spawn, {.v = kittycmd } },
 
 	// Launch Apps -----------
     { MODKEY|ShiftMask, 		XK_f, 						spawn, {.v = fmcmd } },

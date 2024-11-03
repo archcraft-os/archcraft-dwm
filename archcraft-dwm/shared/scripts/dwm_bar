@@ -15,20 +15,20 @@ cpu_info() {
 
 ## Memory
 memory() {
-	printf "^c#C678DD^^b#1e222a^   $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g) "
+	printf "^c#C678DD^^b#1e222a^    $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g) "
 }
 
 ## Wi-fi
 wlan() {
 	case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
-		up) printf "^c#3b414d^^b#7aa2f7^  ^d^%s" " ^c#7aa2f7^Connected " ;;
+		up) printf "^c#3b414d^^b#7aa2f7^   ^d^%s" " ^c#7aa2f7^Connected " ;;
 		down) printf "^c#3b414d^^b#E06C75^ 睊 ^d^%s" " ^c#E06C75^Disconnected " ;;
 	esac
 }
 
 ## Time
 clock() {
-	printf "^c#1e222a^^b#668ee3^  "
+	printf "^c#1e222a^^b#668ee3^   "
 	printf "^c#1e222a^^b#7aa2f7^ $(date '+%a, %I:%M %p') "
 }
 
@@ -37,9 +37,9 @@ updates() {
 	updates=$(checkupdates | wc -l)
 
 	if [ -z "$updates" ]; then
-		printf "^c#98C379^  Updated"
+		printf "^c#98C379^   Updated"
 	else
-		printf "^c#98C379^  $updates"" updates"
+		printf "^c#98C379^   $updates"" updates"
 	fi
 }
 
@@ -54,15 +54,15 @@ battery() {
 		printf "^c#E06C75^  Full"
 	else
 		if [[ ("$BAT" -ge "0") && ("$BAT" -le "20") ]]; then
-			printf "^c#E98CA4^  $BAT%%"
+			printf "^c#E98CA4^   $BAT%%"
 		elif [[ ("$BAT" -ge "20") && ("$BAT" -le "40") ]]; then
-			printf "^c#E98CA4^  $BAT%%"
+			printf "^c#E98CA4^   $BAT%%"
 		elif [[ ("$BAT" -ge "40") && ("$BAT" -le "60") ]]; then
-			printf "^c#E98CA4^  $BAT%%"
+			printf "^c#E98CA4^   $BAT%%"
 		elif [[ ("$BAT" -ge "60") && ("$BAT" -le "80") ]]; then
-			printf "^c#E98CA4^  $BAT%%"
+			printf "^c#E98CA4^   $BAT%%"
 		elif [[ ("$BAT" -ge "80") && ("$BAT" -le "100") ]]; then
-			printf "^c#E98CA4^  $BAT%%"
+			printf "^c#E98CA4^   $BAT%%"
 		fi
 	fi
 }
