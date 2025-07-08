@@ -1,5 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-/* Copyright (C) 2020-2024 Aditya Shakya <adi1090x@gmail.com>
+/* Copyright (C) 2020-2025 Aditya Shakya <adi1090x@gmail.com>
  * 
  * DWM Configuration for Archcraft
  * Patched By : siduck76 <https://github.com/siduck76>
